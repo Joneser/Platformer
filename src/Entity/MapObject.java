@@ -46,9 +46,8 @@ public abstract class MapObject {
 	protected int currentAction;
 	protected int previousAction;
 	protected boolean facingRight;
-	protected boolean facingLeft;
 	
-	// movemennt
+	// movement
 	protected boolean left;
 	protected boolean right;
 	protected boolean up;
@@ -100,11 +99,9 @@ public abstract class MapObject {
 		bottomLeft = bl == Tile.BLOCKED;
 		bottomRight = br == Tile.BLOCKED;
 		
-		
-		
 	}
 	
-	public void checkTileMapCollsion() {
+	public void checkTileMapCollision() {
 		currCol = (int)x / tileSize;
 		currRow = (int)y / tileSize;
 		
