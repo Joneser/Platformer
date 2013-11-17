@@ -80,7 +80,7 @@ public class TileMap {
 			map = new int[numRows][numCols];
 			width = numCols * tileSize;
 			height = numRows * tileSize;
-			
+
 			xmin = GamePanel.WIDTH - width;
 			xmax = 0;
 			ymin = GamePanel.HEIGHT - height;
@@ -127,7 +127,7 @@ public class TileMap {
 		return tiles[r][c].getType();
 
 	}
-	
+
 	public void setTween(double d) {
 		tween = d;
 	}
@@ -138,9 +138,9 @@ public class TileMap {
 		this.y += (y - this.y) * tween;
 
 		fixBounds();
-		
-		colOffset = (int) - this.x / tileSize;
-		rowOffset = (int) - this.y / tileSize;
+
+		colOffset = (int) -this.x / tileSize;
+		rowOffset = (int) -this.y / tileSize;
 
 	}
 
@@ -161,24 +161,25 @@ public class TileMap {
 			y = ymax;
 		}
 	}
-	
+
 	public void draw(Graphics2D g) {
-		for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
-			if(row >= numRows) {
+		for (int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
+			if (row >= numRows) {
 				break;
 			}
-			for(int col = colOffset; col < colOffset + numColsToDraw; col++ ) {
-				if(col >= numCols){
+			for (int col = colOffset; col < colOffset + numColsToDraw; col++) {
+				if (col >= numCols) {
 					break;
 				}
-				if(map[row][col] == 0){
+				if (map[row][col] == 0) {
 					continue;
 				}
 				int rc = map[row][col];
 				int r = rc / numTilesAcross;
 				int c = rc % numTilesAcross;
-				
-				g.drawImage(tiles[r][c].getImage(), (int)x + col * tileSize, (int)y + row * tileSize, null);
+
+				g.drawImage(tiles[r][c].getImage(), (int) x + col * tileSize,
+						(int) y + row * tileSize, null);
 			}
 		}
 	}

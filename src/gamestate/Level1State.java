@@ -5,6 +5,8 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import audio.AudioPlayer;
+
 import main.GamePanel;
 
 import Entity.Enemy;
@@ -28,6 +30,8 @@ public class Level1State extends GameState {
 	
 	private HUD hud;
 	
+	private AudioPlayer bgMusic;
+	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
 		init();
@@ -50,6 +54,9 @@ public class Level1State extends GameState {
 		explosions = new ArrayList<Explosion>();
 		
 		hud = new HUD(player);
+		
+		bgMusic = new AudioPlayer("/Music/level1-1.mp3", true);
+		bgMusic.play();
 	}
 	
 	private void populateEnemies() {
