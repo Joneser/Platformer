@@ -32,14 +32,12 @@ public class Slugger extends Enemy {
 		
 		// load sprites
 		try {
-			
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Enemies/slugger.gif"));
 			
 			sprites = new BufferedImage[3];
 			for(int i = 0; i < sprites.length; i++) {
 				sprites[i] = spritesheet.getSubimage(i * width, 0, width, height);
 			}
-			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -106,7 +104,7 @@ public class Slugger extends Enemy {
 	
 	public void draw(Graphics2D g) {
 		
-		if(notOnScreen()) return;
+		//if(notOnScreen()) return;
 		setMapPosition();
 		
 		super.draw(g);
