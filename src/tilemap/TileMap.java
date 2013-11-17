@@ -104,12 +104,12 @@ public class TileMap {
 		return tileSize;
 	}
 
-	public int getX() {
-		return (int) x;
+	public double getX() {
+		return x;
 	}
 
-	public int getY() {
-		return (int) y;
+	public double getY() {
+		return y;
 	}
 
 	public int getWidth() {
@@ -126,6 +126,10 @@ public class TileMap {
 		int c = rc % numTilesAcross;
 		return tiles[r][c].getType();
 
+	}
+	
+	public void setTween(double d) {
+		tween = d;
 	}
 
 	public void setPosition(double x, double y) {
