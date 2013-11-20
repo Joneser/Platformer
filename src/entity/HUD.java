@@ -17,7 +17,7 @@ public class HUD {
 		player = p;
 		
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/HUD/hud.gif"));
+			image = ImageIO.read(getClass().getResourceAsStream("/HUD/HUD-WithLives.gif"));
 			font = new Font("Arial", Font.PLAIN, 14);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -31,6 +31,8 @@ public class HUD {
 		g.setColor(Color.WHITE);
 		g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 30, 25);
 		g.drawString(player.getFire() / 100 + "/" + player.getMaxFire() / 100, 30, 45);
+		
+		g.drawString(Integer.toString(player.getLives()) + "/" + Integer.toString(player.getMaxLives()), 30, 66);
 	}
 	
 }
