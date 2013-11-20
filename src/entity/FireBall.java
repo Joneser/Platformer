@@ -63,7 +63,9 @@ public class FireBall extends MapObject {
 	public void setHit() {
 		if(hit) return;
 		hit = true;
-		sfx.get("explosion").play();
+		if(!notOnScreen()) {
+			sfx.get("explosion").play();
+		}
 		animation.setFrames(hitSprites);
 		animation.setDelay(70);
 		dx = 0;
@@ -88,7 +90,7 @@ public class FireBall extends MapObject {
 		}
 	}
 	
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g) {		
 		
 		setMapPosition();
 		
