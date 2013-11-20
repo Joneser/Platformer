@@ -14,6 +14,8 @@ import tilemap.TileMap;
 public class Player extends MapObject {
 
 	// player stuff
+	private int lives;
+	private int maxLives;
 	private int health;
 	private int maxHealth;
 	private int fire;
@@ -72,6 +74,7 @@ public class Player extends MapObject {
 		
 		facingRight = true;
 		
+		lives = maxLives = 3;
 		health = maxHealth = 5;
 		fire = maxFire = 2500;
 		
@@ -114,7 +117,30 @@ public class Player extends MapObject {
 		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3", false));
 		sfx.put("scratch", new AudioPlayer("/SFX/scratch.mp3", false));
 		sfx.put("shoot", new AudioPlayer("/SFX/shoot.mp3", true));
-		
+	}
+	
+	public void setLives(int i) { 
+		lives = i; 
+	}
+	
+	public void setMaxLives(int i) {
+		maxLives = i;
+	}
+	
+	public void gainLife() { 
+		lives++; 
+	}
+	
+	public void loseLife() { 
+		lives--; 
+	}
+	
+	public int getLives() { 
+		return lives; 
+	}
+	
+	public int getMaxLives() {
+		return maxLives;
 	}
 	
 	public int getHealth() {
@@ -143,6 +169,24 @@ public class Player extends MapObject {
 	
 	public void setGliding(boolean b) {
 		gliding = b;
+	}
+	
+	public void setDead() {
+		health = 0;
+		loseLife();
+		stop();
+	}
+	
+	public void reset() {
+		health = maxHealth;
+		facingRight = true;
+		currentAction = -1;
+		stop();
+	}
+	
+	public void stop() {
+		left = right = up = down = flinching = 
+			scratching = jumping = gliding = firing = false;
 	}
 	
 	public void checkAttack(ArrayList<Enemy> enemies) {

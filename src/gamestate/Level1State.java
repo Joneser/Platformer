@@ -32,6 +32,10 @@ public class Level1State extends GameState {
 	
 	private AudioPlayer bgMusic;
 	
+	// events
+	private boolean eventDead;
+	private boolean eventStart;
+	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
 		init();
@@ -81,6 +85,13 @@ public class Level1State extends GameState {
 		
 		// update player
 		player.update();
+
+		if(player.getHealth() == 0 || player.getY() > (tileMap.getHeight() - player.getCHeight())) {
+			eventDead = true;
+		}
+		
+		if(eventDead) eventDead();
+		
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getX(), GamePanel.HEIGHT / 2 - player.getY());
 		
 		// set background
@@ -183,5 +194,34 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_E) {
 			player.setGliding(false);
 		}
+	}
+	
+	// reset level
+	private void reset() {
+		player.reset();
+		player.setPosition(100, 100);
+		populateEnemies();
+		eventStart = true;
+		eventStart();
+	}
+	
+	// level started
+	private void eventStart() {
+		bgMusic.restart();
+	}
+	
+	// player has died
+	private void eventDead() {
+		player.setDead();
+		player.stop();
+		System.out.println(player.getLives());
+		if(player.getLives() == 0){
+			bgMusic.close();
+			gsm.setState(GameStateManager.MENUSTATE);
+		} else {
+			eventDead = false;
+			reset();
+		}
+		
 	}
 }
