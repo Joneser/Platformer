@@ -47,7 +47,6 @@ public class Slugger extends Enemy {
 		animation.setFrames(sprites);
 		animation.setDelay(300);
 		
-		right = true;
 		facingRight = true;
 		
 	}
@@ -55,12 +54,12 @@ public class Slugger extends Enemy {
 	private void getNextPosition() {
 		
 		// movement
-		if(left) {
+		if(!facingRight) {
 			dx -= moveSpeed;
 			if(dx < - maxSpeed) {
 				dx = -maxSpeed;
 			}
-		} else if(right){
+		} else if(facingRight){
 			dx += moveSpeed;
 			if(dx > maxSpeed) {
 				dx = maxSpeed;
@@ -88,13 +87,9 @@ public class Slugger extends Enemy {
 		}
 		
 		// if hits a wall, go other direction
-		if(right && dx == 0) {
-			right = false;
-			left = true;
+		if(facingRight && dx == 0) {
 			facingRight = false;
-		} else if(left && dx == 0) {
-			right = true;
-			left = false;
+		} else if(!facingRight && dx == 0) {
 			facingRight = true;
 		}
 		
@@ -104,7 +99,6 @@ public class Slugger extends Enemy {
 	
 	public void draw(Graphics2D g) {
 		
-		//if(notOnScreen()) return;
 		setMapPosition();
 		
 		super.draw(g);
