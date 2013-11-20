@@ -1,4 +1,4 @@
-package Entity.Enemies;
+package entity.enemies;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import tilemap.TileMap;
-import Entity.Animation;
-import Entity.Enemy;
+import entity.Animation;
+import entity.Enemy;
 
 public class Slugger extends Enemy {
 	

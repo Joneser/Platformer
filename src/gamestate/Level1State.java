@@ -9,11 +9,11 @@ import audio.AudioPlayer;
 
 import main.GamePanel;
 
-import Entity.Enemy;
-import Entity.Explosion;
-import Entity.HUD;
-import Entity.Player;
-import Entity.Enemies.Slugger;
+import entity.Enemy;
+import entity.Explosion;
+import entity.HUD;
+import entity.Player;
+import entity.enemies.Slugger;
 
 import tilemap.Background;
 import tilemap.TileMap;
