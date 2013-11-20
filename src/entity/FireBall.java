@@ -2,8 +2,11 @@ package entity;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+
+import audio.AudioPlayer;
 
 import tilemap.TileMap;
 
@@ -13,6 +16,9 @@ public class FireBall extends MapObject {
 	private boolean remove;
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;
+	
+	// Audio
+	private HashMap<String, AudioPlayer> sfx;
 	
 	public FireBall(TileMap tm, boolean right) {
 		super(tm);
@@ -49,11 +55,15 @@ public class FireBall extends MapObject {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		sfx = new HashMap<String, AudioPlayer>();
+		sfx.put("explosion", new AudioPlayer("/SFX/explosion.mp3", true));
 	}
 	
 	public void setHit() {
 		if(hit) return;
 		hit = true;
+		sfx.get("explosion").play();
 		animation.setFrames(hitSprites);
 		animation.setDelay(70);
 		dx = 0;

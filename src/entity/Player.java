@@ -113,6 +113,7 @@ public class Player extends MapObject {
 		sfx = new HashMap<String, AudioPlayer>();
 		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3", false));
 		sfx.put("scratch", new AudioPlayer("/SFX/scratch.mp3", false));
+		sfx.put("shoot", new AudioPlayer("/SFX/shoot.mp3", true));
 		
 	}
 	
@@ -298,6 +299,7 @@ public class Player extends MapObject {
 			}
 		} else if(firing) {
 			if(currentAction != FIREBALL) {
+				sfx.get("shoot").play();
 				currentAction = FIREBALL;
 				animation.setFrames(sprites.get(FIREBALL));
 				animation.setDelay(100);

@@ -10,7 +10,7 @@ public class AudioPlayer {
 	
 	private Clip clip;
 
-	public AudioPlayer(String s, boolean isBG) {
+	public AudioPlayer(String s, boolean reduce) {
 
 		try {
 
@@ -27,9 +27,9 @@ public class AudioPlayer {
 			AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
 			clip = AudioSystem.getClip();
 			clip.open(dais);
-			if(isBG){
+			if(reduce){
 				FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-				gainControl.setValue(-10.0f);
+				gainControl.setValue(-15.0f);
 			}
 
 		} catch (Exception e) {
