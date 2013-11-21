@@ -7,13 +7,13 @@ import java.awt.event.KeyEvent;
 
 import tilemap.Background;
 
-public class MenuState extends GameState {
+public class HelpState extends GameState {
 	
 	private Background bg;
 	
 	private int currentChoice = 0;
 	private String[] options = {
-			"Start", "Help", "Quit"
+			"Return"
 	};
 	
 	private Color titleColor;
@@ -21,9 +21,9 @@ public class MenuState extends GameState {
 	
 	private Font font;
 	
-	public MenuState(GameStateManager gsm) {
+	public HelpState(GameStateManager gsm) {
 		this.gsm = gsm;
-		
+
 		try {
 			
 			bg = new Background("/Backgrounds/menubg.gif", 1);
@@ -42,50 +42,50 @@ public class MenuState extends GameState {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		bg.update();
-
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		bg.draw(g);
 		
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Dragon Tale", 80, 70);
 		
 		g.setFont(font);
+		g.drawString("Press the left and right arrow keys to run", 50, 80);
+		g.drawString("Press ' W ' to jump", 100, 100);
+		g.drawString("Press ' E ' to glide", 100, 120);
+		g.drawString("Press ' R ' to scratch", 100, 140);
+		g.drawString("Press ' F ' to shoot", 100, 160);
+		
 		for(int i = 0; i < options.length; i++) {
 			if(i == currentChoice) {
 				g.setColor(Color.BLACK);
 			} else {
 				g.setColor(Color.RED);
 			}
-			g.drawString(options[i], 145, 140 + i * 15);
+			g.drawString(options[i], 125, 200);
 		}
 	}
 	
 	private void select() {
 		if(currentChoice == 0) {
-			gsm.setState(GameStateManager.LEVEL1STATE);
-		}
-		if(currentChoice == 1) {
-			gsm.setState(GameStateManager.HELPSTATE);
-		}
-		if(currentChoice == 2) {
-			System.exit(0);
+			gsm.setState(GameStateManager.MENUSTATE);
 		}
 	}
 
 	@Override
 	public void keyPressed(int k) {
+		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		if(k == KeyEvent.VK_ENTER) {
 			select();
@@ -102,13 +102,13 @@ public class MenuState extends GameState {
 				currentChoice = 0;
 			}
 		}
-
+		
 	}
 
 	@Override
 	public void keyReleased(int k) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
