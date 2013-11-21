@@ -40,21 +40,16 @@ public class MenuState extends GameState {
 	}
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
+	public void init() {}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		bg.update();
 
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
 		bg.draw(g);
 		
 		g.setColor(titleColor);
@@ -86,7 +81,6 @@ public class MenuState extends GameState {
 
 	@Override
 	public void keyPressed(int k) {
-		// TODO Auto-generated method stub
 		if(k == KeyEvent.VK_ENTER) {
 			select();
 		}
@@ -106,9 +100,6 @@ public class MenuState extends GameState {
 	}
 
 	@Override
-	public void keyReleased(int k) {
-		// TODO Auto-generated method stub
-
-	}
+	public void keyReleased(int k) {}
 
 }

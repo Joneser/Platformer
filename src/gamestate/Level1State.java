@@ -34,7 +34,6 @@ public class Level1State extends GameState {
 	
 	// events
 	private boolean eventDead;
-	private boolean eventStart;
 	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -119,8 +118,7 @@ public class Level1State extends GameState {
 				i--;
 			}
 		}
-
-			
+	
 	}
 	
 	public void draw(Graphics2D g) {
@@ -201,7 +199,6 @@ public class Level1State extends GameState {
 		player.reset();
 		player.setPosition(100, 100);
 		populateEnemies();
-		eventStart = true;
 		eventStart();
 	}
 	
@@ -214,7 +211,7 @@ public class Level1State extends GameState {
 	private void eventDead() {
 		player.setDead();
 		player.stop();
-		System.out.println(player.getLives());
+
 		if(player.getLives() == 0){
 			bgMusic.close();
 			gsm.setState(GameStateManager.MENUSTATE);
@@ -222,6 +219,5 @@ public class Level1State extends GameState {
 			eventDead = false;
 			reset();
 		}
-		
 	}
 }
