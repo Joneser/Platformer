@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	// dimensions
@@ -101,8 +102,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		g2.dispose();
 	}
 	
-	
-	
 	public void keyTyped(KeyEvent key) {
 		
 	}
@@ -114,6 +113,5 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	public void keyReleased(KeyEvent key) {
 		gsm.keyReleased(key.getKeyCode());
 	}
-	
 	
 }

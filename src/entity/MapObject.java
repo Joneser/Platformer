@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.HashMap;
 
 import main.GamePanel;
 
@@ -186,6 +187,15 @@ public abstract class MapObject {
 	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public HashMap<String, Double> getPosition() {
+		
+		HashMap<String, Double> position = new HashMap<String, Double>();
+		position.put("x", this.x);
+		position.put("y", this.y);
+		
+		return position;
 	}
 	
 	public void setVector(double dx, double dy) {

@@ -118,6 +118,11 @@ public class Level1State extends GameState {
 				i--;
 			}
 		}
+		
+		//System.out.println(player.getPosition().get("x"));
+		if(player.getPosition().get("x") > 2965) {
+			// initiate boss fight
+		}
 	
 	}
 	
