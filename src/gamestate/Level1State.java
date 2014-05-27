@@ -34,6 +34,7 @@ public class Level1State extends GameState {
 	
 	// events
 	private boolean eventDead;
+	private boolean bossFight;
 	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -52,6 +53,8 @@ public class Level1State extends GameState {
 		player = new Player(tileMap);
 		player.setPosition(100, 100);
 		
+		bossFight = false;
+		
 		populateEnemies();
 		
 		explosions = new ArrayList<Explosion>();
@@ -62,6 +65,7 @@ public class Level1State extends GameState {
 		bgMusic.play();
 	}
 	
+	// TODO: Randomly place enemies each time level is loaded (so in different position every time)
 	private void populateEnemies() {
 		enemies = new ArrayList<Enemy>();
 		
@@ -83,7 +87,9 @@ public class Level1State extends GameState {
 	public void update() {
 		
 		// update player
-		player.update();
+		if(!bossFight || (bossFight && tileMap.getX() == -2890.0)) {
+			player.update();
+		}
 
 		if(player.getHealth() == 0 || player.getY() > (tileMap.getHeight() - player.getCHeight())) {
 			eventDead = true;
@@ -91,7 +97,11 @@ public class Level1State extends GameState {
 		
 		if(eventDead) eventDead();
 		
-		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getX(), GamePanel.HEIGHT / 2 - player.getY());
+		if(bossFight) {
+			tileMap.setPosition(tileMap.getX() - 1.0f, tileMap.getY() - 1.0f);
+		} else {
+			tileMap.setPosition(GamePanel.WIDTH / 2 - player.getX(), GamePanel.HEIGHT / 2 - player.getY());
+		}		
 		
 		// set background
 		bg.setPosition(tileMap.getX(), tileMap.getY());
@@ -119,9 +129,16 @@ public class Level1State extends GameState {
 			}
 		}
 		
-		//System.out.println(player.getPosition().get("x"));
 		if(player.getPosition().get("x") > 2965) {
-			// initiate boss fight
+			
+			bossFight = true;			
+			// change to boss fight music
+			
+			// TODO: Get boss fight music 
+									
+			// make sure to prevent player from moving out of boss area
+			player.setPositionLimit(2902.0, 100.0, 3170.00, 200);
+			
 		}
 	
 	}

@@ -23,6 +23,11 @@ public abstract class MapObject {
 	protected double dx;
 	protected double dy;
 	
+	protected double minX = 0.0;
+	protected double minY = 0.0;
+	protected double maxX = 0.0;
+	protected double maxY = 0.0;
+	
 	// dimensions
 	protected int width;
 	protected int height;
@@ -185,8 +190,30 @@ public abstract class MapObject {
 	}
 	
 	public void setPosition(double x, double y) {
+		if (this.minX != 0.0 && this.minY != 0.0 && this.maxX != 0.0 && this.maxY != 0.0) {
+			if(x < this.minX) {
+				x = this.minX;
+			} else if(x > this.maxX) {
+				x = this.maxX;
+			}
+			
+			if(y < this.minY) {
+				y = this.minY;
+			} else if(y > this.maxY) {
+				y = this.maxY;
+			}
+		}
+
 		this.x = x;
 		this.y = y;
+	}
+	
+	// This is used to limit the player to certain areas during events (eg. boss fights)
+	public void setPositionLimit(double minX, double minY, double maxX, double maxY) {
+		this.minX = minX;
+		this.minY = minY;
+		this.maxX = maxX;
+		this.maxY = maxY;
 	}
 	
 	public HashMap<String, Double> getPosition() {

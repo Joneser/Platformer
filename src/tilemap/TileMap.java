@@ -8,6 +8,7 @@ import javax.imageio.*;
 import main.GamePanel;
 
 import java.io.*;
+import java.util.HashMap;
 
 public class TileMap {
 
@@ -142,6 +143,17 @@ public class TileMap {
 		colOffset = (int) -this.x / tileSize;
 		rowOffset = (int) -this.y / tileSize;
 
+	}
+	
+	public HashMap<String, Double> getPosition() {
+		HashMap<String, Double> tileMapPosition = new HashMap<String, Double>();
+		
+		tileMapPosition.put("x", this.x);
+		tileMapPosition.put("y", this.y);
+		
+		return tileMapPosition;
+		
+		
 	}
 
 	public void fixBounds() {
